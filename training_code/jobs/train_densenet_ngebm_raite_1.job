@@ -1,0 +1,10 @@
+#!/bin/bash
+#$ -l gpu=1
+#$ -q gpu
+module load conda
+conda activate cyborg2
+
+
+cd ..
+
+python train_droid_alphas.py -datasetPath ../../Data/graite/dataset/frames/ -outputPath ../models_raite/densenet_ngebm_raite_1/ -network densenet -csvPath ../csvs/train_classification_raite.csv -alpha_xent 0.5 -alpha_energy_derivative 0.5 -nEpochs 50
