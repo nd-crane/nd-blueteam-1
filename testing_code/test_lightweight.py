@@ -77,10 +77,13 @@ if __name__ == '__main__':
     with torch.no_grad():
         output = model(tranformImage)
 
-        PAScore = sigmoid(output).detach().cpu().numpy()[:, 1]
+        
+
+#        PAScore = sigmoid(output).detach().cpu().numpy()[:, 1]
         SMScore = nn.Softmax(dim=1)(output).detach().cpu().numpy()[:, 1]
-        print(f'Image,PAScore,SMScore\n{args.imagePath},{PAScore[0]},{SMScore[0]}')
+#        print(f'Image,PAScore,SMScore\n{args.imagePath},{PAScore[0]},{SMScore[0]}')
+        print(f'{SMScore[0]}')
 
     # Writing the scores in the csv file
-    with open(os.path.join(args.output_dir,args.output_filename),'w',newline='') as fout:
-        fout.write(f'Image,PAScore,SMScore\n{args.imagePath},{PAScore[0]},{SMScore[0]}')
+#    with open(os.path.join(args.output_dir,args.output_filename),'w',newline='') as fout:
+#     fout.write(f'Image,PAScore,SMScore\n{args.imagePath},{PAScore[0]},{SMScore[0]}')

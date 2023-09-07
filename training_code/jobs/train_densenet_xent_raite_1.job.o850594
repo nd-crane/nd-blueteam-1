@@ -1,0 +1,1159 @@
+/afs/crc.nd.edu/user/j/jpiland/.local/lib/python3.9/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/afs/crc.nd.edu/user/j/jpiland/.local/lib/python3.9/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=DenseNet121_Weights.IMAGENET1K_V1`. You can also use `weights=DenseNet121_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Namespace(batchSize=20, nEpochs=50, csvPath='../csvs/train_classification_raite.csv', datasetPath='../../Data/graite/dataset/frames/', outputPath='../models_raite/densenet_xent_raite_1/', heatmaps='../../Data/train/heatmaps/', alpha_cyborg=0.0, alpha_fmmce=0.0, alpha_hbcam=0.0, alpha_droid=0.0, alpha_xent=1.0, network='densenet', nClasses=2, log=False, keeprate=1.0, kld=False, lr=0.002, alpha_energy_variance=0.0, alpha_energy_derivative=0.0)
+DenseNet(
+  (features): Sequential(
+    (conv0): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+    (norm0): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (relu0): ReLU(inplace=True)
+    (pool0): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (denseblock1): _DenseBlock(
+      (denselayer1): _DenseLayer(
+        (norm1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(64, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer2): _DenseLayer(
+        (norm1): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(96, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer3): _DenseLayer(
+        (norm1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer4): _DenseLayer(
+        (norm1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer5): _DenseLayer(
+        (norm1): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer6): _DenseLayer(
+        (norm1): BatchNorm2d(224, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(224, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+    (transition1): _Transition(
+      (norm): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (pool): AvgPool2d(kernel_size=2, stride=2, padding=0)
+    )
+    (denseblock2): _DenseBlock(
+      (denselayer1): _DenseLayer(
+        (norm1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer2): _DenseLayer(
+        (norm1): BatchNorm2d(160, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(160, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer3): _DenseLayer(
+        (norm1): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer4): _DenseLayer(
+        (norm1): BatchNorm2d(224, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(224, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer5): _DenseLayer(
+        (norm1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer6): _DenseLayer(
+        (norm1): BatchNorm2d(288, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(288, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer7): _DenseLayer(
+        (norm1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer8): _DenseLayer(
+        (norm1): BatchNorm2d(352, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(352, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer9): _DenseLayer(
+        (norm1): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(384, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer10): _DenseLayer(
+        (norm1): BatchNorm2d(416, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(416, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer11): _DenseLayer(
+        (norm1): BatchNorm2d(448, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(448, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer12): _DenseLayer(
+        (norm1): BatchNorm2d(480, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(480, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+    (transition2): _Transition(
+      (norm): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (pool): AvgPool2d(kernel_size=2, stride=2, padding=0)
+    )
+    (denseblock3): _DenseBlock(
+      (denselayer1): _DenseLayer(
+        (norm1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer2): _DenseLayer(
+        (norm1): BatchNorm2d(288, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(288, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer3): _DenseLayer(
+        (norm1): BatchNorm2d(320, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(320, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer4): _DenseLayer(
+        (norm1): BatchNorm2d(352, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(352, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer5): _DenseLayer(
+        (norm1): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(384, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer6): _DenseLayer(
+        (norm1): BatchNorm2d(416, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(416, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer7): _DenseLayer(
+        (norm1): BatchNorm2d(448, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(448, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer8): _DenseLayer(
+        (norm1): BatchNorm2d(480, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(480, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer9): _DenseLayer(
+        (norm1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer10): _DenseLayer(
+        (norm1): BatchNorm2d(544, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(544, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer11): _DenseLayer(
+        (norm1): BatchNorm2d(576, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(576, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer12): _DenseLayer(
+        (norm1): BatchNorm2d(608, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(608, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer13): _DenseLayer(
+        (norm1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer14): _DenseLayer(
+        (norm1): BatchNorm2d(672, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(672, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer15): _DenseLayer(
+        (norm1): BatchNorm2d(704, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(704, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer16): _DenseLayer(
+        (norm1): BatchNorm2d(736, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(736, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer17): _DenseLayer(
+        (norm1): BatchNorm2d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(768, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer18): _DenseLayer(
+        (norm1): BatchNorm2d(800, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(800, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer19): _DenseLayer(
+        (norm1): BatchNorm2d(832, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(832, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer20): _DenseLayer(
+        (norm1): BatchNorm2d(864, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(864, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer21): _DenseLayer(
+        (norm1): BatchNorm2d(896, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(896, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer22): _DenseLayer(
+        (norm1): BatchNorm2d(928, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(928, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer23): _DenseLayer(
+        (norm1): BatchNorm2d(960, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(960, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer24): _DenseLayer(
+        (norm1): BatchNorm2d(992, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(992, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+    (transition3): _Transition(
+      (norm): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv): Conv2d(1024, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      (pool): AvgPool2d(kernel_size=2, stride=2, padding=0)
+    )
+    (denseblock4): _DenseBlock(
+      (denselayer1): _DenseLayer(
+        (norm1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer2): _DenseLayer(
+        (norm1): BatchNorm2d(544, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(544, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer3): _DenseLayer(
+        (norm1): BatchNorm2d(576, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(576, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer4): _DenseLayer(
+        (norm1): BatchNorm2d(608, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(608, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer5): _DenseLayer(
+        (norm1): BatchNorm2d(640, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(640, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer6): _DenseLayer(
+        (norm1): BatchNorm2d(672, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(672, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer7): _DenseLayer(
+        (norm1): BatchNorm2d(704, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(704, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer8): _DenseLayer(
+        (norm1): BatchNorm2d(736, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(736, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer9): _DenseLayer(
+        (norm1): BatchNorm2d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(768, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer10): _DenseLayer(
+        (norm1): BatchNorm2d(800, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(800, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer11): _DenseLayer(
+        (norm1): BatchNorm2d(832, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(832, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer12): _DenseLayer(
+        (norm1): BatchNorm2d(864, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(864, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer13): _DenseLayer(
+        (norm1): BatchNorm2d(896, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(896, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer14): _DenseLayer(
+        (norm1): BatchNorm2d(928, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(928, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer15): _DenseLayer(
+        (norm1): BatchNorm2d(960, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(960, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (denselayer16): _DenseLayer(
+        (norm1): BatchNorm2d(992, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu1): ReLU(inplace=True)
+        (conv1): Conv2d(992, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu2): ReLU(inplace=True)
+        (conv2): Conv2d(128, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+    (norm5): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (classifier): Linear(in_features=1024, out_features=2, bias=True)
+)
+Reading in data for: train
+  0%|          | 0/23736 [00:00<?, ?it/s]  0%|          | 1/23736 [00:00<56:29,  7.00it/s]  0%|          | 2/23736 [00:00<49:36,  7.97it/s]  0%|          | 4/23736 [00:00<37:46, 10.47it/s]  0%|          | 6/23736 [00:00<37:40, 10.50it/s]  0%|          | 8/23736 [00:00<34:14, 11.55it/s]  0%|          | 10/23736 [00:00<35:07, 11.26it/s]  0%|          | 12/23736 [00:01<32:10, 12.29it/s]  0%|          | 14/23736 [00:01<29:49, 13.26it/s]  0%|          | 16/23736 [00:01<29:57, 13.20it/s]  0%|          | 18/23736 [00:01<33:31, 11.79it/s]  0%|          | 20/23736 [00:01<31:46, 12.44it/s]  0%|          | 22/23736 [00:01<35:49, 11.03it/s]  0%|          | 24/23736 [00:02<34:41, 11.39it/s]  0%|          | 26/23736 [00:02<34:30, 11.45it/s]  0%|          | 28/23736 [00:02<33:32, 11.78it/s]  0%|          | 30/23736 [00:02<35:23, 11.16it/s]  0%|          | 32/23736 [00:02<36:24, 10.85it/s]  0%|          | 34/23736 [00:02<34:13, 11.55it/s]  0%|          | 36/23736 [00:03<45:34,  8.67it/s]  0%|          | 37/23736 [00:03<47:04,  8.39it/s]  0%|          | 38/23736 [00:03<51:33,  7.66it/s]  0%|          | 39/23736 [00:03<50:27,  7.83it/s]  0%|          | 41/23736 [00:03<42:15,  9.34it/s]  0%|          | 42/23736 [00:04<43:26,  9.09it/s]  0%|          | 44/23736 [00:04<39:48,  9.92it/s]  0%|          | 46/23736 [00:04<36:45, 10.74it/s]  0%|          | 48/23736 [00:04<35:28, 11.13it/s]  0%|          | 50/23736 [00:04<33:21, 11.84it/s]  0%|          | 52/23736 [00:04<37:42, 10.47it/s]  0%|          | 54/23736 [00:05<35:11, 11.21it/s]  0%|          | 56/23736 [00:05<35:44, 11.04it/s]  0%|          | 58/23736 [00:05<34:03, 11.59it/s]  0%|          | 60/23736 [00:05<32:02, 12.32it/s]  0%|          | 62/23736 [00:05<29:35, 13.34it/s]  0%|          | 64/23736 [00:05<28:39, 13.77it/s]  0%|          | 66/23736 [00:06<32:58, 11.97it/s]  0%|          | 68/23736 [00:06<33:38, 11.72it/s]  0%|          | 70/23736 [00:06<32:59, 11.96it/s]  0%|          | 72/23736 [00:06<32:07, 12.28it/s]  0%|          | 74/23736 [00:06<31:24, 12.56it/s]  0%|          | 76/23736 [00:06<30:45, 12.82it/s]  0%|          | 78/23736 [00:06<32:11, 12.25it/s]  0%|          | 80/23736 [00:07<33:23, 11.81it/s]  0%|          | 82/23736 [00:07<36:37, 10.77it/s]  0%|          | 84/23736 [00:07<35:14, 11.18it/s]  0%|          | 86/23736 [00:07<31:44, 12.42it/s]  0%|          | 88/23736 [00:07<37:18, 10.56it/s]  0%|          | 90/23736 [00:08<37:33, 10.49it/s]  0%|          | 92/23736 [00:08<35:03, 11.24it/s]  0%|          | 94/23736 [00:08<35:04, 11.23it/s]  0%|          | 96/23736 [00:08<37:38, 10.47it/s]  0%|          | 98/23736 [00:08<36:36, 10.76it/s]  0%|          | 100/23736 [00:09<36:07, 10.90it/s]  0%|          | 102/23736 [00:09<41:18,  9.53it/s]  0%|          | 104/23736 [00:09<37:09, 10.60it/s]  0%|          | 106/23736 [00:09<34:19, 11.47it/s]  0%|          | 108/23736 [00:09<46:29,  8.47it/s]  0%|          | 110/23736 [00:10<47:44,  8.25it/s]  0%|          | 112/23736 [00:10<44:18,  8.89it/s]  0%|          | 113/23736 [00:10<45:10,  8.72it/s]  0%|          | 115/23736 [00:10<41:24,  9.51it/s]  0%|          | 116/23736 [00:10<48:02,  8.19it/s]  0%|          | 118/23736 [00:11<39:47,  9.89it/s]  1%|          | 120/23736 [00:11<39:20, 10.00it/s]  1%|          | 122/23736 [00:11<37:42, 10.44it/s]  1%|          | 124/23736 [00:11<39:26,  9.98it/s]  1%|          | 126/23736 [00:11<36:19, 10.83it/s]  1%|          | 128/23736 [00:11<37:04, 10.61it/s]  1%|          | 130/23736 [00:12<46:47,  8.41it/s]  1%|          | 131/23736 [00:12<48:47,  8.06it/s]  1%|          | 133/23736 [00:12<42:09,  9.33it/s]  1%|          | 135/23736 [00:12<44:26,  8.85it/s]  1%|          | 136/23736 [00:13<50:24,  7.80it/s]  1%|          | 138/23736 [00:13<43:41,  9.00it/s]  1%|          | 140/23736 [00:13<40:21,  9.74it/s]  1%|          | 142/23736 [00:13<41:26,  9.49it/s]  1%|          | 144/23736 [00:13<40:03,  9.82it/s]  1%|          | 146/23736 [00:13<38:05, 10.32it/s]  1%|          | 148/23736 [00:14<43:34,  9.02it/s]  1%|          | 150/23736 [00:14<38:15, 10.28it/s]  1%|          | 152/23736 [00:14<39:33,  9.94it/s]  1%|          | 154/23736 [00:14<36:38, 10.73it/s]  1%|          | 156/23736 [00:14<34:50, 11.28it/s]  1%|          | 158/23736 [00:15<34:02, 11.54it/s]  1%|          | 160/23736 [00:15<32:55, 11.94it/s]  1%|          | 162/23736 [00:15<31:26, 12.49it/s]  1%|          | 164/23736 [00:15<30:12, 13.01it/s]  1%|          | 166/23736 [00:15<30:56, 12.70it/s]  1%|          | 168/23736 [00:15<30:14, 12.99it/s]  1%|          | 170/23736 [00:15<29:29, 13.32it/s]  1%|          | 172/23736 [00:16<28:18, 13.87it/s]  1%|          | 174/23736 [00:16<29:11, 13.45it/s]  1%|          | 176/23736 [00:16<28:33, 13.75it/s]  1%|          | 178/23736 [00:16<32:08, 12.21it/s]  1%|          | 180/23736 [00:16<32:22, 12.13it/s]  1%|          | 182/23736 [00:16<30:02, 13.07it/s]  1%|          | 184/23736 [00:17<30:01, 13.08it/s]  1%|          | 186/23736 [00:17<43:16,  9.07it/s]  1%|          | 188/23736 [00:17<45:30,  8.63it/s]  1%|          | 190/23736 [00:17<39:38,  9.90it/s]  1%|          | 192/23736 [00:18<48:24,  8.11it/s]  1%|          | 194/23736 [00:18<44:51,  8.75it/s]  1%|          | 196/23736 [00:18<42:10,  9.30it/s]  1%|          | 198/23736 [00:18<38:57, 10.07it/s]  1%|          | 200/23736 [00:18<37:34, 10.44it/s]  1%|          | 202/23736 [00:19<40:55,  9.58it/s]  1%|          | 204/23736 [00:19<37:48, 10.37it/s]  1%|          | 206/23736 [00:19<34:50, 11.26it/s]  1%|          | 208/23736 [00:19<34:25, 11.39it/s]  1%|          | 210/23736 [00:19<35:01, 11.19it/s]  1%|          | 212/23736 [00:19<34:30, 11.36it/s]  1%|          | 214/23736 [00:20<31:46, 12.34it/s]  1%|          | 216/23736 [00:20<38:31, 10.17it/s]  1%|          | 218/23736 [00:20<46:05,  8.50it/s]  1%|          | 220/23736 [00:20<41:31,  9.44it/s]  1%|          | 222/23736 [00:20<37:58, 10.32it/s]  1%|          | 224/23736 [00:21<38:18, 10.23it/s]  1%|          | 226/23736 [00:21<37:41, 10.40it/s]  1%|          | 228/23736 [00:21<36:02, 10.87it/s]  1%|          | 230/23736 [00:21<33:33, 11.68it/s]  1%|          | 232/23736 [00:21<31:53, 12.28it/s]  1%|          | 234/23736 [00:21<30:40, 12.77it/s]  1%|          | 236/23736 [00:22<29:57, 13.08it/s]  1%|          | 238/23736 [00:22<33:08, 11.82it/s]  1%|          | 240/23736 [00:22<32:57, 11.88it/s]  1%|          | 242/23736 [00:22<32:35, 12.01it/s]  1%|          | 244/23736 [00:22<32:56, 11.89it/s]  1%|          | 246/23736 [00:22<31:12, 12.54it/s]  1%|          | 248/23736 [00:23<39:54,  9.81it/s]  1%|          | 250/23736 [00:23<38:08, 10.26it/s]  1%|          | 252/23736 [00:23<38:53, 10.07it/s]  1%|          | 254/23736 [00:23<38:44, 10.10it/s]  1%|          | 256/23736 [00:23<37:27, 10.45it/s]  1%|          | 258/23736 [00:24<37:42, 10.38it/s]  1%|          | 260/23736 [00:24<34:44, 11.26it/s]  1%|          | 262/23736 [00:24<31:32, 12.40it/s]  1%|          | 264/23736 [00:24<30:20, 12.90it/s]  1%|          | 266/23736 [00:24<28:27, 13.75it/s]  1%|          | 268/23736 [00:24<27:19, 14.31it/s]  1%|          | 270/23736 [00:24<27:14, 14.36it/s]  1%|          | 272/23736 [00:25<27:30, 14.22it/s]  1%|          | 274/23736 [00:25<28:20, 13.80it/s]  1%|          | 276/23736 [00:25<32:43, 11.95it/s]  1%|          | 278/23736 [00:25<31:04, 12.58it/s]  1%|          | 280/23736 [00:25<35:31, 11.00it/s]  1%|          | 282/23736 [00:26<45:13,  8.64it/s]  1%|          | 284/23736 [00:26<43:48,  8.92it/s]  1%|          | 286/23736 [00:26<40:01,  9.77it/s]  1%|          | 288/23736 [00:26<39:29,  9.90it/s]  1%|          | 290/23736 [00:27<40:11,  9.72it/s]  1%|          | 292/23736 [00:27<38:11, 10.23it/s]  1%|          | 294/23736 [00:27<39:20,  9.93it/s]  1%|          | 296/23736 [00:27<49:54,  7.83it/s]  1%|▏         | 298/23736 [00:27<45:35,  8.57it/s]  1%|▏         | 300/23736 [00:28<44:18,  8.82it/s]  1%|▏         | 301/23736 [00:28<43:56,  8.89it/s]  1%|▏         | 302/23736 [00:28<53:56,  7.24it/s]  1%|▏         | 304/23736 [00:28<51:44,  7.55it/s]  1%|▏         | 306/23736 [00:28<43:08,  9.05it/s]  1%|▏         | 307/23736 [00:29<45:22,  8.61it/s]  1%|▏         | 309/23736 [00:29<39:05,  9.99it/s]  1%|▏         | 311/23736 [00:29<36:30, 10.69it/s]  1%|▏         | 313/23736 [00:29<36:05, 10.82it/s]  1%|▏         | 315/23736 [00:29<37:36, 10.38it/s]  1%|▏         | 317/23736 [00:29<34:55, 11.18it/s]  1%|▏         | 319/23736 [00:30<32:17, 12.08it/s]  1%|▏         | 321/23736 [00:30<32:21, 12.06it/s]  1%|▏         | 323/23736 [00:30<32:21, 12.06it/s]  1%|▏         | 325/23736 [00:30<32:14, 12.10it/s]  1%|▏         | 327/23736 [00:30<30:28, 12.80it/s]  1%|▏         | 329/23736 [00:30<30:24, 12.83it/s]  1%|▏         | 331/23736 [00:31<46:09,  8.45it/s]  1%|▏         | 333/23736 [00:31<46:11,  8.44it/s]  1%|▏         | 334/23736 [00:31<45:03,  8.66it/s]  1%|▏         | 336/23736 [00:31<39:26,  9.89it/s]  1%|▏         | 338/23736 [00:31<35:09, 11.09it/s]  1%|▏         | 340/23736 [00:31<32:23, 12.04it/s]  1%|▏         | 342/23736 [00:32<29:57, 13.01it/s]  1%|▏         | 344/23736 [00:32<31:55, 12.21it/s]  1%|▏         | 346/23736 [00:32<44:49,  8.70it/s]  1%|▏         | 348/23736 [00:32<46:51,  8.32it/s]  1%|▏         | 349/23736 [00:33<47:30,  8.20it/s]  1%|▏         | 350/23736 [00:33<47:31,  8.20it/s]  1%|▏         | 352/23736 [00:33<44:54,  8.68it/s]  1%|▏         | 353/23736 [00:33<43:58,  8.86it/s]  1%|▏         | 355/23736 [00:33<36:31, 10.67it/s]  2%|▏         | 357/23736 [00:33<32:10, 12.11it/s]  2%|▏         | 359/23736 [00:33<31:14, 12.47it/s]  2%|▏         | 361/23736 [00:34<32:04, 12.15it/s]  2%|▏         | 363/23736 [00:34<31:24, 12.40it/s]  2%|▏         | 365/23736 [00:34<30:17, 12.86it/s]  2%|▏         | 367/23736 [00:34<29:15, 13.32it/s]  2%|▏         | 369/23736 [00:34<32:26, 12.01it/s]  2%|▏         | 371/23736 [00:34<32:13, 12.08it/s]  2%|▏         | 373/23736 [00:35<31:49, 12.23it/s]  2%|▏         | 375/23736 [00:35<35:07, 11.09it/s]  2%|▏         | 377/23736 [00:35<35:14, 11.05it/s]  2%|▏         | 379/23736 [00:35<32:11, 12.09it/s]  2%|▏         | 381/23736 [00:35<29:58, 12.99it/s]  2%|▏         | 383/23736 [00:35<29:00, 13.42it/s]  2%|▏         | 385/23736 [00:35<28:56, 13.44it/s]  2%|▏         | 387/23736 [00:36<29:10, 13.34it/s]  2%|▏         | 389/23736 [00:36<33:21, 11.67it/s]  2%|▏         | 391/23736 [00:36<33:42, 11.54it/s]  2%|▏         | 393/23736 [00:36<33:20, 11.67it/s]  2%|▏         | 395/23736 [00:36<33:32, 11.60it/s]  2%|▏         | 397/23736 [00:37<34:03, 11.42it/s]  2%|▏         | 399/23736 [00:37<32:07, 12.10it/s]  2%|▏         | 401/23736 [00:37<30:32, 12.73it/s]  2%|▏         | 403/23736 [00:37<31:33, 12.32it/s]  2%|▏         | 405/23736 [00:37<37:18, 10.42it/s]  2%|▏         | 407/23736 [00:38<41:03,  9.47it/s]  2%|▏         | 409/23736 [00:38<37:42, 10.31it/s]  2%|▏         | 411/23736 [00:38<36:52, 10.54it/s]  2%|▏         | 413/23736 [00:38<35:10, 11.05it/s]  2%|▏         | 415/23736 [00:38<33:53, 11.47it/s]  2%|▏         | 417/23736 [00:38<34:02, 11.42it/s]  2%|▏         | 419/23736 [00:39<40:05,  9.69it/s]  2%|▏         | 421/23736 [00:39<35:45, 10.86it/s]  2%|▏         | 423/23736 [00:39<35:46, 10.86it/s]  2%|▏         | 425/23736 [00:39<34:04, 11.40it/s]  2%|▏         | 427/23736 [00:39<33:44, 11.51it/s]  2%|▏         | 429/23736 [00:39<31:39, 12.27it/s]  2%|▏         | 431/23736 [00:40<32:13, 12.05it/s]  2%|▏         | 433/23736 [00:40<31:27, 12.34it/s]  2%|▏         | 435/23736 [00:40<34:18, 11.32it/s]  2%|▏         | 437/23736 [00:40<35:27, 10.95it/s]  2%|▏         | 439/23736 [00:40<33:44, 11.51it/s]  2%|▏         | 441/23736 [00:41<36:58, 10.50it/s]  2%|▏         | 443/23736 [00:41<34:09, 11.36it/s]  2%|▏         | 445/23736 [00:41<35:09, 11.04it/s]  2%|▏         | 447/23736 [00:41<32:41, 11.87it/s]  2%|▏         | 449/23736 [00:41<31:05, 12.49it/s]  2%|▏         | 451/23736 [00:41<34:26, 11.27it/s]  2%|▏         | 453/23736 [00:42<33:13, 11.68it/s]  2%|▏         | 455/23736 [00:42<31:30, 12.31it/s]  2%|▏         | 457/23736 [00:42<31:58, 12.13it/s]  2%|▏         | 459/23736 [00:42<41:15,  9.40it/s]  2%|▏         | 461/23736 [00:42<39:54,  9.72it/s]  2%|▏         | 463/23736 [00:42<37:12, 10.42it/s]  2%|▏         | 465/23736 [00:43<38:41, 10.02it/s]  2%|▏         | 467/23736 [00:43<40:04,  9.68it/s]  2%|▏         | 469/23736 [00:43<36:53, 10.51it/s]  2%|▏         | 471/23736 [00:43<34:15, 11.32it/s]  2%|▏         | 473/23736 [00:43<33:57, 11.42it/s]  2%|▏         | 475/23736 [00:44<33:24, 11.60it/s]  2%|▏         | 477/23736 [00:44<31:08, 12.45it/s]  2%|▏         | 479/23736 [00:44<30:34, 12.68it/s]  2%|▏         | 481/23736 [00:44<32:20, 11.98it/s]  2%|▏         | 483/23736 [00:44<32:32, 11.91it/s]  2%|▏         | 485/23736 [00:44<31:31, 12.30it/s]  2%|▏         | 487/23736 [00:45<31:57, 12.13it/s]  2%|▏         | 489/23736 [00:45<32:52, 11.79it/s]../../Data/graite/dataset/frames//still6_0005.png
+../../Data/graite/dataset/frames//still3_0396.png
+../../Data/graite/dataset/frames//still5_0390.png
+../../Data/graite/dataset/frames//still1_0587.png
+../../Data/graite/dataset/frames//still6_0451.png
+../../Data/graite/dataset/frames//still5_0125.png
+../../Data/graite/dataset/frames//still1_0475.png
+../../Data/graite/dataset/frames//still6_0280.png
+../../Data/graite/dataset/frames//still1_0152.png
+../../Data/graite/dataset/frames//still6_0482.png
+../../Data/graite/dataset/frames//still3_0305.png
+../../Data/graite/dataset/frames//still6_0368.png
+../../Data/graite/dataset/frames//still5_0677.png
+../../Data/graite/dataset/frames//still2_0035.png
+../../Data/graite/dataset/frames//still2_0119.png
+../../Data/graite/dataset/frames//still3_0580.png
+../../Data/graite/dataset/frames//still2_0107.png
+../../Data/graite/dataset/frames//still5_0043.png
+../../Data/graite/dataset/frames//still3_0474.png
+../../Data/graite/dataset/frames//still1_0462.png
+../../Data/graite/dataset/frames//still3_0653.png
+../../Data/graite/dataset/frames//still3_0365.png
+../../Data/graite/dataset/frames//still5_0464.png
+../../Data/graite/dataset/frames//still1_0527.png
+../../Data/graite/dataset/frames//still1_0048.png
+../../Data/graite/dataset/frames//still1_0526.png
+../../Data/graite/dataset/frames//still5_0509.png
+../../Data/graite/dataset/frames//still4_0370.png
+../../Data/graite/dataset/frames//still5_0715.png
+../../Data/graite/dataset/frames//still1_0238.png
+../../Data/graite/dataset/frames//still1_0509.png
+../../Data/graite/dataset/frames//still3_0583.png
+../../Data/graite/dataset/frames//still4_0227.png
+../../Data/graite/dataset/frames//still5_0309.png
+../../Data/graite/dataset/frames//still1_0171.png
+../../Data/graite/dataset/frames//still1_0136.png
+../../Data/graite/dataset/frames//still3_0346.png
+../../Data/graite/dataset/frames//still5_0548.png
+../../Data/graite/dataset/frames//still4_0252.png
+../../Data/graite/dataset/frames//still3_0283.png
+../../Data/graite/dataset/frames//still1_0484.png
+../../Data/graite/dataset/frames//still4_0202.png
+../../Data/graite/dataset/frames//still5_0132.png
+../../Data/graite/dataset/frames//still6_0289.png
+../../Data/graite/dataset/frames//still1_0515.png
+../../Data/graite/dataset/frames//still3_0562.png
+../../Data/graite/dataset/frames//still5_0024.png
+../../Data/graite/dataset/frames//still3_0258.png
+../../Data/graite/dataset/frames//still3_0004.png
+../../Data/graite/dataset/frames//still5_0011.png
+../../Data/graite/dataset/frames//still6_0205.png
+../../Data/graite/dataset/frames//still5_0613.png
+../../Data/graite/dataset/frames//still2_0170.png
+../../Data/graite/dataset/frames//still2_0143.png
+../../Data/graite/dataset/frames//still6_0468.png
+../../Data/graite/dataset/frames//still1_0567.png
+../../Data/graite/dataset/frames//still1_0256.png
+../../Data/graite/dataset/frames//still5_0178.png
+../../Data/graite/dataset/frames//still4_0126.png
+../../Data/graite/dataset/frames//still5_0040.png
+../../Data/graite/dataset/frames//still2_0012.png
+../../Data/graite/dataset/frames//still5_0484.png
+../../Data/graite/dataset/frames//still6_0245.png
+../../Data/graite/dataset/frames//still3_0684.png
+../../Data/graite/dataset/frames//still5_0126.png
+../../Data/graite/dataset/frames//still1_0353.png
+../../Data/graite/dataset/frames//still5_0502.png
+../../Data/graite/dataset/frames//still1_0240.png
+../../Data/graite/dataset/frames//still2_0176.png
+../../Data/graite/dataset/frames//still3_0249.png
+../../Data/graite/dataset/frames//still3_0673.png
+../../Data/graite/dataset/frames//still2_0140.png
+../../Data/graite/dataset/frames//still4_0375.png
+../../Data/graite/dataset/frames//still6_0188.png
+../../Data/graite/dataset/frames//still4_0360.png
+../../Data/graite/dataset/frames//still2_0146.png
+../../Data/graite/dataset/frames//still1_0002.png
+../../Data/graite/dataset/frames//still3_0488.png
+../../Data/graite/dataset/frames//still6_0461.png
+../../Data/graite/dataset/frames//still3_0145.png
+../../Data/graite/dataset/frames//still4_0041.png
+../../Data/graite/dataset/frames//still1_0219.png
+../../Data/graite/dataset/frames//still6_0338.png
+../../Data/graite/dataset/frames//still6_0135.png
+../../Data/graite/dataset/frames//still5_0367.png
+../../Data/graite/dataset/frames//still6_0470.png
+../../Data/graite/dataset/frames//still3_0567.png
+../../Data/graite/dataset/frames//still5_0669.png
+../../Data/graite/dataset/frames//still3_0322.png
+../../Data/graite/dataset/frames//still3_0278.png
+../../Data/graite/dataset/frames//still2_0009.png
+../../Data/graite/dataset/frames//still4_0162.png
+../../Data/graite/dataset/frames//still2_0126.png
+../../Data/graite/dataset/frames//still1_0295.png
+../../Data/graite/dataset/frames//still1_0360.png
+../../Data/graite/dataset/frames//still6_0374.png
+../../Data/graite/dataset/frames//still6_0230.png
+../../Data/graite/dataset/frames//still5_0458.png
+../../Data/graite/dataset/frames//still1_0399.png
+../../Data/graite/dataset/frames//still3_0331.png
+../../Data/graite/dataset/frames//still4_0373.png
+../../Data/graite/dataset/frames//still4_0085.png
+../../Data/graite/dataset/frames//still5_0033.png
+../../Data/graite/dataset/frames//still2_0018.png
+../../Data/graite/dataset/frames//still4_0197.png
+../../Data/graite/dataset/frames//still6_0213.png
+../../Data/graite/dataset/frames//still5_0629.png
+../../Data/graite/dataset/frames//still6_0165.png
+../../Data/graite/dataset/frames//still3_0201.png
+../../Data/graite/dataset/frames//still3_0486.png
+../../Data/graite/dataset/frames//still3_0656.png
+../../Data/graite/dataset/frames//still5_0402.png
+../../Data/graite/dataset/frames//still5_0250.png
+../../Data/graite/dataset/frames//still4_0010.png
+../../Data/graite/dataset/frames//still3_0164.png
+../../Data/graite/dataset/frames//still4_0168.png
+../../Data/graite/dataset/frames//still3_0522.png
+../../Data/graite/dataset/frames//still3_0646.png
+../../Data/graite/dataset/frames//still5_0446.png
+../../Data/graite/dataset/frames//still5_0470.png
+../../Data/graite/dataset/frames//still6_0324.png
+../../Data/graite/dataset/frames//still6_0312.png
+../../Data/graite/dataset/frames//still3_0369.png
+../../Data/graite/dataset/frames//still1_0182.png
+../../Data/graite/dataset/frames//still5_0275.png
+../../Data/graite/dataset/frames//still5_0056.png
+../../Data/graite/dataset/frames//still1_0248.png
+../../Data/graite/dataset/frames//still1_0112.png
+../../Data/graite/dataset/frames//still6_0337.png
+../../Data/graite/dataset/frames//still3_0087.png
+../../Data/graite/dataset/frames//still6_0423.png
+../../Data/graite/dataset/frames//still1_0456.png
+../../Data/graite/dataset/frames//still5_0334.png
+../../Data/graite/dataset/frames//still1_0532.png
+../../Data/graite/dataset/frames//still5_0068.png
+../../Data/graite/dataset/frames//still1_0492.png
+../../Data/graite/dataset/frames//still1_0387.png
+../../Data/graite/dataset/frames//still5_0353.png
+../../Data/graite/dataset/frames//still3_0394.png
+../../Data/graite/dataset/frames//still3_0307.png
+../../Data/graite/dataset/frames//still3_0712.png
+../../Data/graite/dataset/frames//still6_0115.png
+../../Data/graite/dataset/frames//still6_0416.png
+../../Data/graite/dataset/frames//still3_0607.png
+../../Data/graite/dataset/frames//still3_0195.png
+../../Data/graite/dataset/frames//still3_0372.png
+../../Data/graite/dataset/frames//still5_0467.png
+../../Data/graite/dataset/frames//still2_0072.png
+../../Data/graite/dataset/frames//still1_0519.png
+../../Data/graite/dataset/frames//still3_0528.png
+../../Data/graite/dataset/frames//still6_0297.png
+../../Data/graite/dataset/frames//still1_0482.png
+../../Data/graite/dataset/frames//still3_0104.png
+../../Data/graite/dataset/frames//still5_0727.png
+../../Data/graite/dataset/frames//still1_0140.png
+../../Data/graite/dataset/frames//still4_0271.png
+../../Data/graite/dataset/frames//still1_0491.png
+../../Data/graite/dataset/frames//still1_0223.png
+../../Data/graite/dataset/frames//still1_0184.png
+../../Data/graite/dataset/frames//still4_0336.png
+../../Data/graite/dataset/frames//still5_0682.png
+../../Data/graite/dataset/frames//still6_0159.png
+../../Data/graite/dataset/frames//still3_0290.png
+../../Data/graite/dataset/frames//still2_0078.png
+../../Data/graite/dataset/frames//still6_0486.png
+../../Data/graite/dataset/frames//still5_0705.png
+../../Data/graite/dataset/frames//still3_0244.png
+../../Data/graite/dataset/frames//still2_0116.png
+../../Data/graite/dataset/frames//still1_0377.png
+../../Data/graite/dataset/frames//still5_0490.png
+../../Data/graite/dataset/frames//still1_0304.png
+../../Data/graite/dataset/frames//still5_0317.png
+../../Data/graite/dataset/frames//still6_0114.png
+../../Data/graite/dataset/frames//still6_0117.png
+../../Data/graite/dataset/frames//still1_0278.png
+../../Data/graite/dataset/frames//still1_0230.png
+../../Data/graite/dataset/frames//still1_0425.png
+../../Data/graite/dataset/frames//still5_0493.png
+../../Data/graite/dataset/frames//still1_0190.png
+../../Data/graite/dataset/frames//still1_0233.png
+../../Data/graite/dataset/frames//still3_0045.png
+../../Data/graite/dataset/frames//still3_0285.png
+../../Data/graite/dataset/frames//still3_0598.png
+../../Data/graite/dataset/frames//still1_0488.png
+../../Data/graite/dataset/frames//still3_0353.png
+../../Data/graite/dataset/frames//still4_0365.png
+../../Data/graite/dataset/frames//still1_0050.png
+../../Data/graite/dataset/frames//still1_0503.png
+../../Data/graite/dataset/frames//still5_0672.png
+../../Data/graite/dataset/frames//still6_0258.png
+../../Data/graite/dataset/frames//still3_0619.png
+../../Data/graite/dataset/frames//still2_0043.png
+../../Data/graite/dataset/frames//still5_0453.png
+../../Data/graite/dataset/frames//still4_0297.png
+../../Data/graite/dataset/frames//still1_0126.png
+../../Data/graite/dataset/frames//still4_0061.png
+../../Data/graite/dataset/frames//still1_0019.png
+../../Data/graite/dataset/frames//still4_0004.png
+../../Data/graite/dataset/frames//still4_0008.png
+../../Data/graite/dataset/frames//still1_0551.png
+../../Data/graite/dataset/frames//still3_0413.png
+../../Data/graite/dataset/frames//still5_0212.png
+../../Data/graite/dataset/frames//still6_0053.png
+../../Data/graite/dataset/frames//still5_0411.png
+../../Data/graite/dataset/frames//still5_0115.png
+../../Data/graite/dataset/frames//still3_0043.png
+../../Data/graite/dataset/frames//still6_0046.png
+../../Data/graite/dataset/frames//still1_0440.png
+../../Data/graite/dataset/frames//still4_0219.png
+../../Data/graite/dataset/frames//still3_0025.png
+../../Data/graite/dataset/frames//still5_0280.png
+../../Data/graite/dataset/frames//still3_0652.png
+../../Data/graite/dataset/frames//still1_0332.png
+../../Data/graite/dataset/frames//still1_0546.png
+../../Data/graite/dataset/frames//still4_0156.png
+../../Data/graite/dataset/frames//still3_0391.png
+../../Data/graite/dataset/frames//still1_0513.png
+../../Data/graite/dataset/frames//still3_0357.png
+../../Data/graite/dataset/frames//still5_0220.png
+../../Data/graite/dataset/frames//still5_0455.png
+../../Data/graite/dataset/frames//still3_0122.png
+../../Data/graite/dataset/frames//still6_0056.png
+../../Data/graite/dataset/frames//still5_0514.png
+../../Data/graite/dataset/frames//still6_0355.png
+../../Data/graite/dataset/frames//still1_0303.png
+../../Data/graite/dataset/frames//still6_0085.png
+../../Data/graite/dataset/frames//still3_0011.png
+../../Data/graite/dataset/frames//still6_0096.png
+../../Data/graite/dataset/frames//still5_0726.png
+../../Data/graite/dataset/frames//still2_0137.png
+../../Data/graite/dataset/frames//still5_0550.png
+../../Data/graite/dataset/frames//still6_0146.png
+../../Data/graite/dataset/frames//still1_0170.png
+../../Data/graite/dataset/frames//still2_0123.png
+../../Data/graite/dataset/frames//still1_0470.png
+../../Data/graite/dataset/frames//still6_0352.png
+../../Data/graite/dataset/frames//still5_0478.png
+../../Data/graite/dataset/frames//still1_0071.png
+../../Data/graite/dataset/frames//still5_0343.png
+../../Data/graite/dataset/frames//still4_0077.png
+../../Data/graite/dataset/frames//still1_0268.png
+../../Data/graite/dataset/frames//still4_0014.png
+../../Data/graite/dataset/frames//still2_0065.png
+../../Data/graite/dataset/frames//still5_0315.png
+../../Data/graite/dataset/frames//still5_0248.png
+../../Data/graite/dataset/frames//still5_0392.png
+../../Data/graite/dataset/frames//still4_0135.png
+../../Data/graite/dataset/frames//still3_0539.png
+../../Data/graite/dataset/frames//still5_0105.png
+../../Data/graite/dataset/frames//still5_0649.png
+../../Data/graite/dataset/frames//still1_0293.png
+../../Data/graite/dataset/frames//still1_0572.png
+../../Data/graite/dataset/frames//still6_0406.png
+../../Data/graite/dataset/frames//still3_0008.png
+../../Data/graite/dataset/frames//still1_0279.png
+../../Data/graite/dataset/frames//still6_0317.png
+../../Data/graite/dataset/frames//still1_0089.png
+../../Data/graite/dataset/frames//still2_0060.png
+../../Data/graite/dataset/frames//still1_0247.png
+../../Data/graite/dataset/frames//still5_0593.png
+../../Data/graite/dataset/frames//still6_0364.png
+../../Data/graite/dataset/frames//still5_0688.png
+../../Data/graite/dataset/frames//still1_0490.png
+../../Data/graite/dataset/frames//still4_0078.png
+../../Data/graite/dataset/frames//still5_0492.png
+../../Data/graite/dataset/frames//still1_0239.png
+../../Data/graite/dataset/frames//still1_0522.png
+../../Data/graite/dataset/frames//still4_0049.png
+../../Data/graite/dataset/frames//still1_0180.png
+../../Data/graite/dataset/frames//still5_0506.png
+../../Data/graite/dataset/frames//still3_0471.png
+../../Data/graite/dataset/frames//still3_0170.png
+../../Data/graite/dataset/frames//still1_0301.png
+../../Data/graite/dataset/frames//still5_0085.png
+../../Data/graite/dataset/frames//still2_0154.png
+../../Data/graite/dataset/frames//still5_0158.png
+../../Data/graite/dataset/frames//still5_0079.png
+../../Data/graite/dataset/frames//still6_0152.png
+../../Data/graite/dataset/frames//still3_0406.png
+../../Data/graite/dataset/frames//still4_0092.png
+../../Data/graite/dataset/frames//still1_0419.png
+../../Data/graite/dataset/frames//still5_0483.png
+../../Data/graite/dataset/frames//still6_0454.png
+../../Data/graite/dataset/frames//still3_0634.png
+../../Data/graite/dataset/frames//still5_0507.png
+../../Data/graite/dataset/frames//still3_0233.png
+../../Data/graite/dataset/frames//still6_0186.png
+../../Data/graite/dataset/frames//still6_0401.png
+../../Data/graite/dataset/frames//still5_0271.png
+../../Data/graite/dataset/frames//still6_0119.png
+../../Data/graite/dataset/frames//still6_0076.png
+../../Data/graite/dataset/frames//still5_0746.png
+../../Data/graite/dataset/frames//still5_0580.png
+../../Data/graite/dataset/frames//still5_0314.png
+../../Data/graite/dataset/frames//still3_0348.png
+../../Data/graite/dataset/frames//still5_0444.png
+../../Data/graite/dataset/frames//still2_0085.png
+../../Data/graite/dataset/frames//still6_0156.png
+../../Data/graite/dataset/frames//still3_0327.png
+../../Data/graite/dataset/frames//still5_0503.png
+../../Data/graite/dataset/frames//still5_0718.png
+../../Data/graite/dataset/frames//still2_0150.png
+../../Data/graite/dataset/frames//still5_0049.png
+../../Data/graite/dataset/frames//still4_0172.png
+../../Data/graite/dataset/frames//still6_0010.png
+../../Data/graite/dataset/frames//still6_0184.png
+../../Data/graite/dataset/frames//still3_0338.png
+../../Data/graite/dataset/frames//still3_0718.png
+../../Data/graite/dataset/frames//still3_0642.png
+../../Data/graite/dataset/frames//still6_0065.png
+../../Data/graite/dataset/frames//still3_0440.png
+../../Data/graite/dataset/frames//still5_0537.png
+../../Data/graite/dataset/frames//still4_0071.png
+../../Data/graite/dataset/frames//still5_0369.png
+../../Data/graite/dataset/frames//still3_0398.png
+../../Data/graite/dataset/frames//still5_0521.png
+../../Data/graite/dataset/frames//still5_0748.png
+../../Data/graite/dataset/frames//still1_0082.png
+../../Data/graite/dataset/frames//still3_0548.png
+../../Data/graite/dataset/frames//still3_0444.png
+../../Data/graite/dataset/frames//still1_0421.png
+../../Data/graite/dataset/frames//still4_0132.png
+../../Data/graite/dataset/frames//still6_0178.png
+../../Data/graite/dataset/frames//still1_0413.png
+../../Data/graite/dataset/frames//still3_0048.png
+../../Data/graite/dataset/frames//still3_0211.png
+  2%|▏         | 491/23736 [00:45<34:53, 11.10it/s]  2%|▏         | 493/23736 [00:45<33:18, 11.63it/s]  2%|▏         | 495/23736 [00:45<31:01, 12.49it/s]  2%|▏         | 497/23736 [00:45<30:22, 12.75it/s]  2%|▏         | 499/23736 [00:46<35:01, 11.06it/s]  2%|▏         | 501/23736 [00:46<32:07, 12.05it/s]  2%|▏         | 503/23736 [00:46<35:05, 11.03it/s]  2%|▏         | 505/23736 [00:46<35:31, 10.90it/s]  2%|▏         | 507/23736 [00:46<32:51, 11.78it/s]  2%|▏         | 509/23736 [00:46<35:03, 11.04it/s]  2%|▏         | 511/23736 [00:47<32:28, 11.92it/s]  2%|▏         | 513/23736 [00:47<38:27, 10.07it/s]  2%|▏         | 515/23736 [00:47<35:50, 10.80it/s]  2%|▏         | 517/23736 [00:47<32:48, 11.79it/s]  2%|▏         | 519/23736 [00:47<31:40, 12.22it/s]  2%|▏         | 521/23736 [00:47<32:07, 12.05it/s]  2%|▏         | 523/23736 [00:48<33:43, 11.47it/s]  2%|▏         | 525/23736 [00:48<40:23,  9.58it/s]  2%|▏         | 527/23736 [00:48<38:59,  9.92it/s]  2%|▏         | 529/23736 [00:48<36:30, 10.59it/s]  2%|▏         | 531/23736 [00:48<33:20, 11.60it/s]  2%|▏         | 533/23736 [00:49<35:30, 10.89it/s]  2%|▏         | 535/23736 [00:49<33:32, 11.53it/s]  2%|▏         | 537/23736 [00:49<34:52, 11.09it/s]  2%|▏         | 539/23736 [00:49<34:08, 11.32it/s]  2%|▏         | 541/23736 [00:49<31:43, 12.19it/s]  2%|▏         | 543/23736 [00:50<34:31, 11.19it/s]  2%|▏         | 545/23736 [00:50<32:07, 12.03it/s]  2%|▏         | 547/23736 [00:50<30:59, 12.47it/s]  2%|▏         | 549/23736 [00:50<33:18, 11.60it/s]  2%|▏         | 551/23736 [00:50<33:47, 11.43it/s]  2%|▏         | 553/23736 [00:50<32:11, 12.00it/s]  2%|▏         | 555/23736 [00:50<29:59, 12.88it/s]  2%|▏         | 557/23736 [00:51<29:08, 13.26it/s]  2%|▏         | 559/23736 [00:51<30:25, 12.70it/s]  2%|▏         | 561/23736 [00:51<37:42, 10.24it/s]  2%|▏         | 563/23736 [00:51<37:36, 10.27it/s]  2%|▏         | 565/23736 [00:51<36:14, 10.66it/s]  2%|▏         | 567/23736 [00:52<35:43, 10.81it/s]  2%|▏         | 569/23736 [00:52<33:42, 11.45it/s]  2%|▏         | 571/23736 [00:52<32:15, 11.97it/s]  2%|▏         | 573/23736 [00:52<30:54, 12.49it/s]  2%|▏         | 575/23736 [00:52<30:43, 12.56it/s]  2%|▏         | 577/23736 [00:52<30:35, 12.62it/s]  2%|▏         | 579/23736 [00:53<37:16, 10.36it/s]  2%|▏         | 581/23736 [00:53<35:20, 10.92it/s]  2%|▏         | 583/23736 [00:53<33:12, 11.62it/s]  2%|▏         | 585/23736 [00:53<30:46, 12.54it/s]  2%|▏         | 587/23736 [00:53<30:46, 12.53it/s]  2%|▏         | 589/23736 [00:53<32:52, 11.74it/s]  2%|▏         | 591/23736 [00:54<30:31, 12.64it/s]  2%|▏         | 593/23736 [00:54<31:39, 12.18it/s]  3%|▎         | 595/23736 [00:54<29:32, 13.05it/s]  3%|▎         | 597/23736 [00:54<29:23, 13.12it/s]  3%|▎         | 599/23736 [00:54<28:57, 13.32it/s]  3%|▎         | 601/23736 [00:54<28:00, 13.77it/s]  3%|▎         | 603/23736 [00:54<29:23, 13.12it/s]  3%|▎         | 605/23736 [00:55<29:31, 13.06it/s]  3%|▎         | 607/23736 [00:55<29:44, 12.96it/s]  3%|▎         | 609/23736 [00:55<30:18, 12.72it/s]  3%|▎         | 611/23736 [00:55<30:05, 12.81it/s]  3%|▎         | 613/23736 [00:55<31:43, 12.15it/s]  3%|▎         | 615/23736 [00:55<30:14, 12.74it/s]  3%|▎         | 617/23736 [00:56<32:40, 11.79it/s]  3%|▎         | 619/23736 [00:56<36:03, 10.68it/s]  3%|▎         | 621/23736 [00:56<40:34,  9.50it/s]  3%|▎         | 623/23736 [00:56<37:23, 10.30it/s]  3%|▎         | 625/23736 [00:56<36:03, 10.68it/s]  3%|▎         | 627/23736 [00:57<35:54, 10.73it/s]  3%|▎         | 629/23736 [00:57<38:49,  9.92it/s]  3%|▎         | 631/23736 [00:57<42:51,  8.98it/s]  3%|▎         | 633/23736 [00:57<38:42,  9.95it/s]  3%|▎         | 635/23736 [00:57<35:33, 10.83it/s]  3%|▎         | 637/23736 [00:58<35:13, 10.93it/s]  3%|▎         | 639/23736 [00:58<34:21, 11.21it/s]  3%|▎         | 641/23736 [00:58<33:02, 11.65it/s]  3%|▎         | 643/23736 [00:58<30:56, 12.44it/s]  3%|▎         | 645/23736 [00:58<30:00, 12.82it/s]  3%|▎         | 647/23736 [00:58<29:01, 13.26it/s]  3%|▎         | 649/23736 [00:58<28:10, 13.65it/s]  3%|▎         | 651/23736 [00:59<29:05, 13.22it/s]  3%|▎         | 653/23736 [00:59<30:55, 12.44it/s]  3%|▎         | 655/23736 [00:59<31:43, 12.12it/s]  3%|▎         | 657/23736 [00:59<38:07, 10.09it/s]  3%|▎         | 659/23736 [00:59<34:38, 11.10it/s]  3%|▎         | 661/23736 [01:00<39:08,  9.83it/s]  3%|▎         | 663/23736 [01:00<36:30, 10.54it/s]  3%|▎         | 665/23736 [01:00<35:59, 10.68it/s]  3%|▎         | 667/23736 [01:00<35:33, 10.81it/s]  3%|▎         | 669/23736 [01:00<31:57, 12.03it/s]  3%|▎         | 671/23736 [01:00<30:32, 12.59it/s]  3%|▎         | 673/23736 [01:01<29:20, 13.10it/s]  3%|▎         | 675/23736 [01:01<28:16, 13.59it/s]  3%|▎         | 677/23736 [01:01<28:50, 13.32it/s]  3%|▎         | 679/23736 [01:01<28:23, 13.53it/s]  3%|▎         | 681/23736 [01:01<29:21, 13.09it/s]  3%|▎         | 683/23736 [01:01<29:25, 13.06it/s]  3%|▎         | 685/23736 [01:02<32:29, 11.82it/s]  3%|▎         | 687/23736 [01:02<34:54, 11.00it/s]  3%|▎         | 689/23736 [01:02<34:37, 11.10it/s]  3%|▎         | 691/23736 [01:02<32:53, 11.68it/s]  3%|▎         | 693/23736 [01:02<32:14, 11.91it/s]  3%|▎         | 695/23736 [01:02<31:08, 12.33it/s]  3%|▎         | 697/23736 [01:03<31:49, 12.07it/s]  3%|▎         | 699/23736 [01:03<30:56, 12.41it/s]  3%|▎         | 701/23736 [01:03<31:04, 12.35it/s]  3%|▎         | 703/23736 [01:03<29:23, 13.06it/s]  3%|▎         | 705/23736 [01:03<27:51, 13.78it/s]  3%|▎         | 707/23736 [01:03<30:44, 12.48it/s]  3%|▎         | 709/23736 [01:03<28:52, 13.29it/s]  3%|▎         | 711/23736 [01:04<31:30, 12.18it/s]  3%|▎         | 713/23736 [01:04<29:57, 12.81it/s]  3%|▎         | 715/23736 [01:04<30:47, 12.46it/s]  3%|▎         | 717/23736 [01:04<30:17, 12.67it/s]  3%|▎         | 719/23736 [01:04<31:21, 12.24it/s]  3%|▎         | 721/23736 [01:04<30:23, 12.62it/s]  3%|▎         | 723/23736 [01:05<40:04,  9.57it/s]  3%|▎         | 725/23736 [01:05<41:05,  9.33it/s]  3%|▎         | 727/23736 [01:05<40:34,  9.45it/s]  3%|▎         | 729/23736 [01:05<42:02,  9.12it/s]  3%|▎         | 731/23736 [01:06<38:22,  9.99it/s]  3%|▎         | 733/23736 [01:06<35:20, 10.85it/s]  3%|▎         | 735/23736 [01:06<32:28, 11.81it/s]  3%|▎         | 737/23736 [01:06<34:00, 11.27it/s]  3%|▎         | 739/23736 [01:06<30:58, 12.37it/s]  3%|▎         | 741/23736 [01:06<29:52, 12.83it/s]  3%|▎         | 743/23736 [01:07<30:02, 12.75it/s]  3%|▎         | 745/23736 [01:07<30:57, 12.38it/s]  3%|▎         | 747/23736 [01:07<31:49, 12.04it/s]  3%|▎         | 749/23736 [01:07<33:00, 11.61it/s]  3%|▎         | 751/23736 [01:07<34:31, 11.09it/s]  3%|▎         | 753/23736 [01:07<35:16, 10.86it/s]  3%|▎         | 755/23736 [01:08<32:05, 11.94it/s]  3%|▎         | 757/23736 [01:08<32:23, 11.83it/s]  3%|▎         | 759/23736 [01:08<29:34, 12.95it/s]  3%|▎         | 761/23736 [01:08<33:11, 11.53it/s]  3%|▎         | 763/23736 [01:08<30:59, 12.36it/s]  3%|▎         | 765/23736 [01:08<31:07, 12.30it/s]  3%|▎         | 767/23736 [01:09<31:40, 12.08it/s]  3%|▎         | 769/23736 [01:09<29:31, 12.96it/s]  3%|▎         | 771/23736 [01:09<28:42, 13.33it/s]  3%|▎         | 773/23736 [01:09<29:18, 13.06it/s]  3%|▎         | 775/23736 [01:09<31:31, 12.14it/s]  3%|▎         | 777/23736 [01:09<31:59, 11.96it/s]  3%|▎         | 779/23736 [01:10<41:43,  9.17it/s]  3%|▎         | 781/23736 [01:10<37:37, 10.17it/s]  3%|▎         | 783/23736 [01:10<42:26,  9.01it/s]  3%|▎         | 785/23736 [01:10<36:58, 10.34it/s]  3%|▎         | 787/23736 [01:10<33:25, 11.44it/s]  3%|▎         | 789/23736 [01:11<40:51,  9.36it/s]  3%|▎         | 791/23736 [01:11<36:15, 10.55it/s]  3%|▎         | 793/23736 [01:11<36:04, 10.60it/s]  3%|▎         | 795/23736 [01:11<33:28, 11.42it/s]  3%|▎         | 797/23736 [01:11<30:34, 12.51it/s]  3%|▎         | 799/23736 [01:11<29:05, 13.14it/s]  3%|▎         | 801/23736 [01:12<28:01, 13.64it/s]  3%|▎         | 803/23736 [01:12<34:19, 11.13it/s]  3%|▎         | 805/23736 [01:12<39:40,  9.63it/s]  3%|▎         | 807/23736 [01:12<37:12, 10.27it/s]  3%|▎         | 809/23736 [01:12<34:46, 10.99it/s]  3%|▎         | 811/23736 [01:13<33:35, 11.37it/s]  3%|▎         | 813/23736 [01:13<34:45, 10.99it/s]  3%|▎         | 815/23736 [01:13<36:34, 10.45it/s]../../Data/graite/dataset/frames//still3_0058.png
+../../Data/graite/dataset/frames//still4_0382.png
+../../Data/graite/dataset/frames//still3_0479.png
+../../Data/graite/dataset/frames//still1_0131.png
+../../Data/graite/dataset/frames//still1_0407.png
+../../Data/graite/dataset/frames//still5_0621.png
+../../Data/graite/dataset/frames//still5_0735.png
+../../Data/graite/dataset/frames//still1_0156.png
+../../Data/graite/dataset/frames//still6_0418.png
+../../Data/graite/dataset/frames//still6_0285.png
+../../Data/graite/dataset/frames//still5_0524.png
+../../Data/graite/dataset/frames//still1_0591.png
+../../Data/graite/dataset/frames//still1_0324.png
+../../Data/graite/dataset/frames//still5_0357.png
+../../Data/graite/dataset/frames//still6_0059.png
+../../Data/graite/dataset/frames//still1_0123.png
+../../Data/graite/dataset/frames//still5_0420.png
+../../Data/graite/dataset/frames//still5_0219.png
+../../Data/graite/dataset/frames//still5_0582.png
+../../Data/graite/dataset/frames//still1_0411.png
+../../Data/graite/dataset/frames//still5_0151.png
+../../Data/graite/dataset/frames//still1_0571.png
+../../Data/graite/dataset/frames//still3_0629.png
+../../Data/graite/dataset/frames//still2_0095.png
+../../Data/graite/dataset/frames//still2_0149.png
+../../Data/graite/dataset/frames//still3_0373.png
+../../Data/graite/dataset/frames//still1_0543.png
+../../Data/graite/dataset/frames//still6_0428.png
+../../Data/graite/dataset/frames//still2_0077.png
+../../Data/graite/dataset/frames//still1_0448.png
+../../Data/graite/dataset/frames//still5_0701.png
+../../Data/graite/dataset/frames//still3_0293.png
+../../Data/graite/dataset/frames//still3_0344.png
+../../Data/graite/dataset/frames//still6_0259.png
+../../Data/graite/dataset/frames//still6_0371.png
+../../Data/graite/dataset/frames//still2_0127.png
+../../Data/graite/dataset/frames//still5_0228.png
+../../Data/graite/dataset/frames//still3_0705.png
+../../Data/graite/dataset/frames//still5_0569.png
+../../Data/graite/dataset/frames//still5_0661.png
+../../Data/graite/dataset/frames//still3_0704.png
+../../Data/graite/dataset/frames//still6_0183.png
+../../Data/graite/dataset/frames//still2_0028.png
+../../Data/graite/dataset/frames//still4_0107.png
+../../Data/graite/dataset/frames//still1_0201.png
+../../Data/graite/dataset/frames//still2_0050.png
+../../Data/graite/dataset/frames//still4_0371.png
+../../Data/graite/dataset/frames//still1_0075.png
+../../Data/graite/dataset/frames//still4_0020.png
+../../Data/graite/dataset/frames//still5_0099.png
+../../Data/graite/dataset/frames//still1_0220.png
+../../Data/graite/dataset/frames//still1_0530.png
+../../Data/graite/dataset/frames//still6_0018.png
+../../Data/graite/dataset/frames//still4_0019.png
+../../Data/graite/dataset/frames//still1_0261.png
+../../Data/graite/dataset/frames//still1_0578.png
+../../Data/graite/dataset/frames//still4_0100.png
+../../Data/graite/dataset/frames//still1_0124.png
+../../Data/graite/dataset/frames//still1_0060.png
+../../Data/graite/dataset/frames//still4_0097.png
+../../Data/graite/dataset/frames//still1_0594.png
+../../Data/graite/dataset/frames//still1_0312.png
+../../Data/graite/dataset/frames//still2_0130.png
+../../Data/graite/dataset/frames//still5_0350.png
+../../Data/graite/dataset/frames//still5_0662.png
+../../Data/graite/dataset/frames//still1_0451.png
+../../Data/graite/dataset/frames//still3_0133.png
+../../Data/graite/dataset/frames//still6_0365.png
+../../Data/graite/dataset/frames//still4_0352.png
+../../Data/graite/dataset/frames//still5_0175.png
+../../Data/graite/dataset/frames//still1_0132.png
+../../Data/graite/dataset/frames//still1_0346.png
+../../Data/graite/dataset/frames//still3_0392.png
+../../Data/graite/dataset/frames//still2_0017.png
+../../Data/graite/dataset/frames//still5_0003.png
+../../Data/graite/dataset/frames//still3_0628.png
+../../Data/graite/dataset/frames//still3_0564.png
+../../Data/graite/dataset/frames//still1_0564.png
+../../Data/graite/dataset/frames//still1_0102.png
+../../Data/graite/dataset/frames//still3_0434.png
+../../Data/graite/dataset/frames//still2_0110.png
+../../Data/graite/dataset/frames//still1_0369.png
+../../Data/graite/dataset/frames//still1_0359.png
+../../Data/graite/dataset/frames//still1_0254.png
+../../Data/graite/dataset/frames//still5_0086.png
+../../Data/graite/dataset/frames//still5_0229.png
+../../Data/graite/dataset/frames//still4_0269.png
+../../Data/graite/dataset/frames//still4_0296.png
+../../Data/graite/dataset/frames//still6_0134.png
+../../Data/graite/dataset/frames//still5_0496.png
+../../Data/graite/dataset/frames//still6_0071.png
+../../Data/graite/dataset/frames//still3_0435.png
+../../Data/graite/dataset/frames//still5_0376.png
+../../Data/graite/dataset/frames//still2_0081.png
+../../Data/graite/dataset/frames//still4_0035.png
+../../Data/graite/dataset/frames//still3_0039.png
+../../Data/graite/dataset/frames//still5_0135.png
+../../Data/graite/dataset/frames//still5_0533.png
+../../Data/graite/dataset/frames//still5_0585.png
+../../Data/graite/dataset/frames//still3_0199.png
+../../Data/graite/dataset/frames//still4_0093.png
+../../Data/graite/dataset/frames//still3_0497.png
+../../Data/graite/dataset/frames//still5_0489.png
+../../Data/graite/dataset/frames//still1_0064.png
+../../Data/graite/dataset/frames//still5_0495.png
+../../Data/graite/dataset/frames//still5_0702.png
+../../Data/graite/dataset/frames//still3_0074.png
+../../Data/graite/dataset/frames//still1_0061.png
+../../Data/graite/dataset/frames//still2_0023.png
+../../Data/graite/dataset/frames//still5_0286.png
+../../Data/graite/dataset/frames//still5_0689.png
+../../Data/graite/dataset/frames//still4_0194.png
+../../Data/graite/dataset/frames//still6_0104.png
+../../Data/graite/dataset/frames//still2_0064.png
+../../Data/graite/dataset/frames//still3_0616.png
+../../Data/graite/dataset/frames//still6_0392.png
+../../Data/graite/dataset/frames//still5_0360.png
+../../Data/graite/dataset/frames//still6_0302.png
+../../Data/graite/dataset/frames//still5_0671.png
+../../Data/graite/dataset/frames//still1_0534.png
+../../Data/graite/dataset/frames//still6_0143.png
+../../Data/graite/dataset/frames//still6_0037.png
+../../Data/graite/dataset/frames//still5_0364.png
+../../Data/graite/dataset/frames//still1_0326.png
+../../Data/graite/dataset/frames//still1_0022.png
+../../Data/graite/dataset/frames//still6_0190.png
+../../Data/graite/dataset/frames//still3_0245.png
+../../Data/graite/dataset/frames//still4_0073.png
+../../Data/graite/dataset/frames//still3_0624.png
+../../Data/graite/dataset/frames//still6_0443.png
+../../Data/graite/dataset/frames//still5_0097.png
+../../Data/graite/dataset/frames//still5_0289.png
+../../Data/graite/dataset/frames//still4_0137.png
+../../Data/graite/dataset/frames//still5_0323.png
+../../Data/graite/dataset/frames//still1_0380.png
+../../Data/graite/dataset/frames//still6_0091.png
+../../Data/graite/dataset/frames//still6_0388.png
+../../Data/graite/dataset/frames//still1_0020.png
+../../Data/graite/dataset/frames//still1_0460.png
+../../Data/graite/dataset/frames//still6_0354.png
+../../Data/graite/dataset/frames//still6_0182.png
+../../Data/graite/dataset/frames//still5_0712.png
+../../Data/graite/dataset/frames//still5_0054.png
+../../Data/graite/dataset/frames//still5_0744.png
+../../Data/graite/dataset/frames//still4_0125.png
+../../Data/graite/dataset/frames//still5_0277.png
+../../Data/graite/dataset/frames//still3_0116.png
+../../Data/graite/dataset/frames//still6_0162.png
+../../Data/graite/dataset/frames//still3_0668.png
+../../Data/graite/dataset/frames//still1_0537.png
+../../Data/graite/dataset/frames//still4_0325.png
+../../Data/graite/dataset/frames//still6_0466.png
+../../Data/graite/dataset/frames//still5_0062.png
+../../Data/graite/dataset/frames//still1_0245.png
+../../Data/graite/dataset/frames//still3_0511.png
+../../Data/graite/dataset/frames//still4_0088.png
+../../Data/graite/dataset/frames//still5_0131.png
+../../Data/graite/dataset/frames//still4_0322.png
+../../Data/graite/dataset/frames//still4_0134.png
+../../Data/graite/dataset/frames//still5_0106.png
+../../Data/graite/dataset/frames//still5_0600.png
+../../Data/graite/dataset/frames//still1_0253.png
+../../Data/graite/dataset/frames//still4_0277.png
+../../Data/graite/dataset/frames//still1_0128.png
+../../Data/graite/dataset/frames//still2_0094.png
+../../Data/graite/dataset/frames//still4_0144.png
+../../Data/graite/dataset/frames//still2_0096.png
+../../Data/graite/dataset/frames//still6_0138.png
+../../Data/graite/dataset/frames//still5_0736.png
+../../Data/graite/dataset/frames//still2_0034.png
+../../Data/graite/dataset/frames//still2_0013.png
+../../Data/graite/dataset/frames//still3_0402.png
+../../Data/graite/dataset/frames//still1_0255.png
+../../Data/graite/dataset/frames//still5_0739.png
+../../Data/graite/dataset/frames//still6_0106.png
+../../Data/graite/dataset/frames//still1_0275.png
+../../Data/graite/dataset/frames//still1_0473.png
+../../Data/graite/dataset/frames//still3_0053.png
+../../Data/graite/dataset/frames//still1_0476.png
+../../Data/graite/dataset/frames//still1_0305.png
+../../Data/graite/dataset/frames//still6_0436.png
+../../Data/graite/dataset/frames//still3_0251.png
+../../Data/graite/dataset/frames//still5_0171.png
+../../Data/graite/dataset/frames//still5_0406.png
+../../Data/graite/dataset/frames//still6_0292.png
+../../Data/graite/dataset/frames//still5_0508.png
+../../Data/graite/dataset/frames//still1_0249.png
+../../Data/graite/dataset/frames//still6_0157.png
+../../Data/graite/dataset/frames//still5_0181.png
+../../Data/graite/dataset/frames//still1_0024.png
+../../Data/graite/dataset/frames//still5_0318.png
+../../Data/graite/dataset/frames//still6_0336.png
+../../Data/graite/dataset/frames//still3_0648.png
+../../Data/graite/dataset/frames//still5_0510.png
+../../Data/graite/dataset/frames//still1_0449.png
+../../Data/graite/dataset/frames//still3_0167.png
+../../Data/graite/dataset/frames//still3_0352.png
+../../Data/graite/dataset/frames//still5_0717.png
+../../Data/graite/dataset/frames//still6_0023.png
+../../Data/graite/dataset/frames//still1_0570.png
+../../Data/graite/dataset/frames//still4_0274.png
+../../Data/graite/dataset/frames//still4_0142.png
+../../Data/graite/dataset/frames//still5_0096.png
+../../Data/graite/dataset/frames//still1_0081.png
+../../Data/graite/dataset/frames//still1_0144.png
+../../Data/graite/dataset/frames//still1_0368.png
+../../Data/graite/dataset/frames//still5_0742.png
+../../Data/graite/dataset/frames//still3_0473.png
+../../Data/graite/dataset/frames//still4_0161.png
+../../Data/graite/dataset/frames//still4_0007.png
+../../Data/graite/dataset/frames//still3_0315.png
+../../Data/graite/dataset/frames//still1_0104.png
+../../Data/graite/dataset/frames//still6_0441.png
+../../Data/graite/dataset/frames//still6_0192.png
+../../Data/graite/dataset/frames//still5_0296.png
+../../Data/graite/dataset/frames//still3_0559.png
+../../Data/graite/dataset/frames//still1_0150.png
+../../Data/graite/dataset/frames//still4_0167.png
+../../Data/graite/dataset/frames//still5_0450.png
+../../Data/graite/dataset/frames//still6_0105.png
+../../Data/graite/dataset/frames//still5_0388.png
+../../Data/graite/dataset/frames//still5_0597.png
+../../Data/graite/dataset/frames//still6_0353.png
+../../Data/graite/dataset/frames//still5_0457.png
+../../Data/graite/dataset/frames//still1_0541.png
+../../Data/graite/dataset/frames//still4_0205.png
+../../Data/graite/dataset/frames//still2_0011.png
+../../Data/graite/dataset/frames//still5_0288.png
+../../Data/graite/dataset/frames//still5_0261.png
+../../Data/graite/dataset/frames//still3_0316.png
+../../Data/graite/dataset/frames//still1_0196.png
+../../Data/graite/dataset/frames//still5_0020.png
+../../Data/graite/dataset/frames//still3_0446.png
+../../Data/graite/dataset/frames//still1_0439.png
+../../Data/graite/dataset/frames//still6_0426.png
+../../Data/graite/dataset/frames//still4_0069.png
+../../Data/graite/dataset/frames//still5_0611.png
+../../Data/graite/dataset/frames//still3_0294.png
+../../Data/graite/dataset/frames//still4_0184.png
+../../Data/graite/dataset/frames//still3_0347.png
+../../Data/graite/dataset/frames//still4_0337.png
+../../Data/graite/dataset/frames//still5_0405.png
+../../Data/graite/dataset/frames//still5_0632.png
+../../Data/graite/dataset/frames//still3_0540.png
+../../Data/graite/dataset/frames//still3_0289.png
+../../Data/graite/dataset/frames//still3_0154.png
+../../Data/graite/dataset/frames//still6_0357.png
+../../Data/graite/dataset/frames//still5_0344.png
+../../Data/graite/dataset/frames//still4_0062.png
+../../Data/graite/dataset/frames//still2_0138.png
+../../Data/graite/dataset/frames//still5_0128.png
+../../Data/graite/dataset/frames//still1_0540.png
+../../Data/graite/dataset/frames//still1_0406.png
+../../Data/graite/dataset/frames//still3_0228.png
+../../Data/graite/dataset/frames//still5_0166.png
+../../Data/graite/dataset/frames//still6_0291.png
+../../Data/graite/dataset/frames//still6_0030.png
+../../Data/graite/dataset/frames//still5_0512.png
+../../Data/graite/dataset/frames//still6_0278.png
+../../Data/graite/dataset/frames//still6_0445.png
+../../Data/graite/dataset/frames//still2_0031.png
+../../Data/graite/dataset/frames//still5_0139.png
+../../Data/graite/dataset/frames//still2_0080.png
+../../Data/graite/dataset/frames//still5_0095.png
+../../Data/graite/dataset/frames//still1_0083.png
+../../Data/graite/dataset/frames//still3_0339.png
+../../Data/graite/dataset/frames//still4_0236.png
+../../Data/graite/dataset/frames//still1_0009.png
+../../Data/graite/dataset/frames//still3_0654.png
+../../Data/graite/dataset/frames//still6_0271.png
+../../Data/graite/dataset/frames//still5_0491.png
+../../Data/graite/dataset/frames//still5_0029.png
+../../Data/graite/dataset/frames//still5_0499.png
+../../Data/graite/dataset/frames//still5_0626.png
+../../Data/graite/dataset/frames//still5_0342.png
+../../Data/graite/dataset/frames//still2_0001.png
+../../Data/graite/dataset/frames//still4_0099.png
+../../Data/graite/dataset/frames//still3_0081.png
+../../Data/graite/dataset/frames//still6_0193.png
+../../Data/graite/dataset/frames//still1_0094.png
+../../Data/graite/dataset/frames//still1_0004.png
+../../Data/graite/dataset/frames//still3_0005.png
+../../Data/graite/dataset/frames//still5_0129.png
+../../Data/graite/dataset/frames//still1_0192.png
+../../Data/graite/dataset/frames//still1_0525.png
+../../Data/graite/dataset/frames//still6_0415.png
+../../Data/graite/dataset/frames//still4_0086.png
+../../Data/graite/dataset/frames//still2_0024.png
+../../Data/graite/dataset/frames//still2_0070.png
+../../Data/graite/dataset/frames//still4_0009.png
+../../Data/graite/dataset/frames//still3_0006.png
+../../Data/graite/dataset/frames//still3_0612.png
+../../Data/graite/dataset/frames//still3_0666.png
+../../Data/graite/dataset/frames//still1_0187.png
+../../Data/graite/dataset/frames//still3_0256.png
+../../Data/graite/dataset/frames//still3_0264.png
+../../Data/graite/dataset/frames//still6_0126.png
+../../Data/graite/dataset/frames//still2_0021.png
+../../Data/graite/dataset/frames//still5_0659.png
+../../Data/graite/dataset/frames//still4_0118.png
+../../Data/graite/dataset/frames//still6_0345.png
+../../Data/graite/dataset/frames//still3_0130.png
+../../Data/graite/dataset/frames//still6_0276.png
+../../Data/graite/dataset/frames//still4_0386.png
+../../Data/graite/dataset/frames//still5_0542.png
+../../Data/graite/dataset/frames//still3_0332.png
+../../Data/graite/dataset/frames//still5_0243.png
+../../Data/graite/dataset/frames//still5_0439.png
+../../Data/graite/dataset/frames//still6_0168.png
+../../Data/graite/dataset/frames//still3_0698.png
+../../Data/graite/dataset/frames//still4_0228.png
+../../Data/graite/dataset/frames//still6_0211.png
+../../Data/graite/dataset/frames//still2_0121.png
+../../Data/graite/dataset/frames//still4_0378.png
+../../Data/graite/dataset/frames//still6_0465.png
+../../Data/graite/dataset/frames//still3_0587.png
+../../Data/graite/dataset/frames//still5_0525.png
+../../Data/graite/dataset/frames//still5_0562.png
+../../Data/graite/dataset/frames//still3_0386.png
+../../Data/graite/dataset/frames//still1_0441.png
+../../Data/graite/dataset/frames//still1_0274.png
+../../Data/graite/dataset/frames//still3_0065.png
+../../Data/graite/dataset/frames//still2_0039.png
+../../Data/graite/dataset/frames//still5_0349.png
+../../Data/graite/dataset/frames//still6_0383.png
+../../Data/graite/dataset/frames//still4_0146.png
+  3%|▎         | 817/23736 [01:13<36:54, 10.35it/s]  3%|▎         | 819/23736 [01:13<37:10, 10.27it/s]  3%|▎         | 821/23736 [01:14<36:46, 10.39it/s]  3%|▎         | 823/23736 [01:14<38:57,  9.80it/s]  3%|▎         | 824/23736 [01:14<39:06,  9.77it/s]  3%|▎         | 825/23736 [01:14<44:58,  8.49it/s]  3%|▎         | 826/23736 [01:14<51:57,  7.35it/s]  3%|▎         | 828/23736 [01:14<41:31,  9.19it/s]  3%|▎         | 830/23736 [01:15<38:14,  9.98it/s]  4%|▎         | 832/23736 [01:15<36:29, 10.46it/s]  4%|▎         | 834/23736 [01:15<33:04, 11.54it/s]
