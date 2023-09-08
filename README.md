@@ -1,4 +1,4 @@
-# RAITE: ND Blue Team
+# RAITE: ND Blue Team 1
 
 
 This repository contains Notre Dame Blue Team's solutions for RAITE 2023.
@@ -13,8 +13,8 @@ It provides scripts for training and testing two models, `droid` and `ngebm`, to
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/nd-crane/raite_droid_ngebm_models.git
-   cd raite_droid_ngebm_models
+   git clone https://github.com/nd-crane/nd-blueteam-1.git
+   cd nd-blueteam-1
    ```
 
 2. **Set Up the Anaconda Environment**:
