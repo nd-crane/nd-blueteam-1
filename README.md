@@ -1,25 +1,88 @@
-# raite_droid_ngebm_models
-We need to have our code for training models available on github for the 2023 RAITE event. This  repo is for the droid and ngebm models.
+# RAITE: ND Blue Team
 
-The training_code/jobs/ folder contains the submissions used to generate the models.
 
-Requirements
--------------
-The conda env I used is listed in req.txt
+This repository contains Notre Dame Blue Team's solutions for RAITE 2023.
+It provides scripts for training and testing two models, `droid` and `ngebm`, to classify images based on the presence of humans. These models are trained to detect whether an image contains a human or not.
 
-Location
----------
-The models are at the top of the repo and are named:
-droid_model.pth
-ngebm_model.pth
 
-Testing
----------
-The testing_code/test_lightweight.py is a script to test a single image.
-It has two inputs, imagePath and modelPath
-It has one output, a single softmax score indicating if there are people or no people.
-If the value is over 0.5, there are no people.
-If the value is under 0.5, there are people.
+## Prerequisites
 
-Here is an example of the test code
-python test_lightweight.py -imagePath ../../Data/graite/dataset/frames/mixed_singlefile_pair_standing_split1_0058.png -modelPath ../droid_model.pth
+- [Anaconda](https://www.anaconda.com/products/distribution) or [Miniconda](https://docs.conda.io/en/latest/miniconda.html)
+
+## Setup
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/nd-crane/raite_droid_ngebm_models.git
+   cd raite_droid_ngebm_models
+   ```
+
+2. **Set Up the Anaconda Environment**:
+   Create a new Anaconda environment using the provided `environment.yml` file:
+   ```bash
+   conda env create -f environment.yml
+   ```
+
+   Activate the environment:
+   ```bash
+   conda activate nd-blueteam-1
+   ```
+
+3. **Download the Models**:
+   The models (`droid` and `ngebm`) can be downloaded from the provided links.
+
+   - [Download Droid Model Here](https://drive.google.com/file/d/1xn6oMd0DEU7Ib6TXgLKgyeKOn9zjiXQj/view?usp=sharing)
+   - [Download Ngebm Model Here](https://drive.google.com/file/d/1T7th1PsvMMetXPxq3o6NswhXdfypMcBk/view?usp=sharing)
+
+## Training
+
+### Droid Model
+To train the `droid` model, use the following command:
+
+```bash
+python training_code/train_droid_alphas.py -datasetPath [PATH_TO_DATASET] \
+    -outputPath [PATH_TO_SAVE_MODEL] \
+    -network densenet \
+    -alpha_xent 0.5 \
+    -alpha_droid 0.5 \
+    -nEpochs 50
+```
+
+### Ngebm Model
+To train the `ngebm` model, use the following command:
+
+```bash
+python training_code/train_droid_alphas.py -datasetPath [PATH_TO_DATASET] \
+    -outputPath [PATH_TO_SAVE_MODEL] \ 
+    -network densenet \
+    -alpha_xent 0.5 \
+    -alpha_energy_derivative 0.5 \
+    -nEpochs 50
+```
+
+
+## Testing
+
+To test an image using a specific model, use the following command:
+
+```bash
+python testing_code/test_lightweight.py \
+    -modelPath [PATH_TO_YOUR_MODEL]
+    -imagePath [PATH_TO_YOUR_IMAGE] \
+```
+
+**Example**:
+```bash
+python testing_code/test_lightweight.py \
+    -modelPath ../droid_model.pth \
+    -imagePath mixed_singlefile_pair_standing_split1_0058.png \
+
+```
+
+
+## Results Interpretation
+
+The script will output a single softmax score indicating the presence of people in the image:
+
+- If the value is **over 0.5**, there are no people.
+- If the value is **under 0.5**, there are people.
