@@ -1,4 +1,4 @@
-name: cyborg2
+name: nd-blueteam-1
 channels:
   - pytorch
   - nvidia
