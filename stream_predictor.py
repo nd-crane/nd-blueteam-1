@@ -19,7 +19,7 @@ def write_to_csv(frame_number, score, filename, score_threshold=0.0):
 
 def transform_image(image, im_size):
     transform = transforms.Compose([
-        transforms.ToPILImage(),
+        transforms.ToPILImage(), #This was not in my original transform, but it might be fine.
         transforms.Resize([im_size, im_size]),
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
