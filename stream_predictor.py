@@ -1,3 +1,4 @@
+from threading import Thread
 import time
 import torch
 import torchvision.models as models
@@ -8,6 +9,7 @@ import os
 import argparse
 import cv2
 import numpy as np
+from numpy.typing import NDArray
 
 FONT = cv2.FONT_HERSHEY_SIMPLEX
 
@@ -83,7 +85,7 @@ def get_model_and_size(network, nClasses):
     return model, im_size
 
 
-def overlay_score_and_display(image_np, score, frame_display_width, frame_display_height):
+def overlay_score(frame: int, image_np, score, frame_display_width, frame_display_height):
 
     # Resize the frame
     #image_np = cv2.resize(image_np, (frame_display_width, frame_display_height))
@@ -102,9 +104,96 @@ def overlay_score_and_display(image_np, score, frame_display_width, frame_displa
     # Overlay the score on the image
     cv2.putText(image_np, text, (text_x, text_y), FONT, 1, color, 2, cv2.LINE_AA)
 
+    return image_np
+
     # Display the frame
     # TODO: refactory frame name 
-    cv2.imshow('ND BlueTeam 1 - Model 1', image_np)
+    cv2.imwrite(f'ND BlueTeam 1 - Model 1 - {frame}.png', image_np)
+    #cv2.imshow('ND BlueTeam 1 - Model 1', image_np)
+
+class StreamInput(Thread):
+    _stream: cv2.VideoCapture
+    _should_exit: bool = False
+
+    # Latest Information
+    _latest_timestamp = 0.0
+
+    def __init__(self, location: str, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self._latest_frame = None
+
+        # Initialize Stream
+        self._stream = cv2.VideoCapture(location) 
+        if not self._stream.isOpened():
+            raise Exception("can't open video writer")
+
+        # Reduce buffer size if supported
+        self._stream.set(cv2.CAP_PROP_BUFFERSIZE, 3)
+
+    def isOpened(self) -> bool:
+        return self._stream.isOpened()
+    
+    def width(self) -> int:
+        return int(self._stream.get(cv2.CAP_PROP_FRAME_WIDTH))
+    
+    def height(self) -> int:
+        return int(self._stream.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    
+    def latest(self):
+        if self._latest_frame is None:
+            return (None, None)
+        return (self._latest_timestamp, self._latest_frame.copy())
+
+    def run(self) -> None:
+        while not self._should_exit:
+            ret, frame = self._stream.read()
+            if not ret:
+                break
+            self._latest_frame = frame
+            self._latest_timestamp = self._stream.get(cv2.CAP_PROP_POS_MSEC)
+
+        self._stream.close()
+        self._stream.release()
+
+    def stop(self):
+        self._should_exit = True
+
+class RTSPOutput(Thread):
+    def __init__(self, width: int, height: int, fps: int, location: str, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self._should_exit = False
+        self._latest_frame = None
+        self._timestep = 1.0 / fps
+        self._stream = cv2.VideoWriter('appsrc ! videoconvert' + \
+            ' ! video/x-raw,format=I420' + \
+            ' ! x264enc speed-preset=ultrafast key-int-max=' + str(fps * 2) + \
+            ' ! video/x-h264,profile=baseline' + \
+            f' ! rtspclientsink protocols=tcp location={location}',
+            cv2.CAP_GSTREAMER, 0, fps, (width, height), True)
+        if not self._stream.isOpened():
+            raise Exception("can't open video writer")
+    
+    def update(self, frame):
+        self._latest_frame = frame.copy()
+        
+    def run(self) -> None:
+        while not self._should_exit:
+            start = time.time()
+
+            if self._latest_frame is not None:
+                self._stream.write(self._latest_frame)
+            
+            diff = time.time() - start
+            if diff > self._timestep:
+                time.sleep(diff)
+
+        self._stream.release()
+        print("Output finished")
+
+    def stop(self):
+        self._should_exit = True
 
 
 def main():
@@ -146,29 +235,30 @@ def main():
     model = model.to(device)
     model.eval()
 
-    _ = predict_impath(model, 'sample_img.png', im_size)
-    
     #cv2.imshow('ND-BT-1 M1', np.zeros((frame_display_height, frame_display_width, 3), dtype=np.uint8))
     time.sleep(2)
     
     # Open the stream 
     cap_time = time.time()
-    cap = cv2.VideoCapture(args.stream_url) 
 
-    if not cap.isOpened():
-        print("Error: Could not open stream.")
-        exit()
+    input_rtsp = StreamInput(args.stream_url)
+    input_rtsp.start()
+
+    output_rtsp = RTSPOutput(input_rtsp.width(), input_rtsp.height(), 30, "rtsp://localhost:8554/blue-team-output")
+    output_rtsp.start()
 
     print("cap time", time.time()-cap_time)
     frame_count = 0
-    while True:
-
+    last_timestamp = 0.0
+    while input_rtsp.isOpened():
         frame_time = time.time()
-        
-        ret, frame = cap.read()
-        if not ret:
-            print("Error: Couldn't read frame.")
-            break        
+
+        timestamp, frame = input_rtsp.latest()
+        if frame is None or last_timestamp == timestamp:
+            time.sleep(0.01)
+            continue
+
+        last_timestamp = timestamp
 
         # Make prediction
         frame_count += 1
@@ -177,18 +267,20 @@ def main():
         #score = 0
 
         # Write predictions for RAITE ouput format 
-        write_to_csv(frame_count, score, raite_output_path)        
+        # write_to_csv(frame_count, score, raite_output_path)        
 
         # Display the frame with boxes
-        overlay_score_and_display(frame, score, args.frame_display_width, args.frame_display_height)
+        overlay_score(frame_count, frame, score, args.frame_display_width, args.frame_display_height)
 
-        # Exit when 'q' is pressed
-        if cv2.waitKey(1) == ord('q'):
-            break
+        output_rtsp.update(frame)
 
-        print("frame time", time.time()-frame_time)
-    cap.release()
-    cv2.destroyAllWindows()
+        print("frame time", time.time()-frame_time, " timestamp", timestamp)
+
+    input_rtsp.stop()
+    input_rtsp.join()
+    
+    output_rtsp.stop()
+    output_rtsp.join()
 
 if __name__ == "__main__":
     main()
