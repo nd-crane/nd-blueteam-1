@@ -234,21 +234,22 @@ def main():
     output_rtsp.start()
 
     print("cap time", time.time()-cap_time)
+
     frame_count = 0
     last_timestamp = 0.0
+    
     while input_rtsp.isOpened():
-        frame_time = time.time()
 
+        frame_time = time.time()
         timestamp, frame = input_rtsp.latest()
         if frame is None or last_timestamp == timestamp:
             time.sleep(0.01)
             continue
 
         last_timestamp = timestamp
+        frame_count += 1
 
         # Make prediction
-        frame_count += 1
-        
         score = predict(model, frame, im_size)
 
         # Write predictions for RAITE ouput format 

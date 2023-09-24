@@ -1,31 +1,38 @@
-MATCHID=01
-CAMLABEL=camera-20
-TEAMID=Notre-Dame-1
+# RAITE 2023
+TEAM_ID=Notre-Dame-1
+MATCH_DURATION=7m20s
+TIMESTAMP=$(date +'%Y-%m-%d_%H-%M')
+
+# Configure before each match
+#-------------------------------
+MATCH_ID=01
+CAM_LABEL=camera-20
 RSTP_URL=rtsp://localhost:8554
+#-------------------------------
+
 
 TIMESTAMP=$(date +'%Y-%m-%d_%H-%M')
 
-MODELNAME=droid
+MODEL_NAME=droid
 python stream_predictor.py \
-    --input_rtsp ${RSTP_URL}/${CAMLABEL}  \
-    --output_rtsp ${RSTP_URL}/output__${MATCHID}__${TEAMID}__${CAMLABEL}__${MODELNAME}__${TIMESTAMP}  \
-    --weights_path ${MODELNAME}_model.pth \
-    --output_fname output/${MATCHID}__${TEAMID}__${CAMLABEL}__${MODELNAME}__${TIMESTAMP}.csv &
+    --input_rtsp ${RSTP_URL}/${CAM_LABEL}  \
+    --output_rtsp ${RSTP_URL}/output__${MATCH_ID}__${TEAM_ID}__${CAM_LABEL}__${MODEL_NAME}__${TIMESTAMP}  \
+    --weights_path ${MODEL_NAME}_model.pth \
+    --output_fname output/${MATCH_ID}__${TEAM_ID}__${CAM_LABEL}__${MODEL_NAME}__${TIMESTAMP}.csv &
 
 PID1=$!
 
-MODELNAME=ngebm
+MODEL_NAME=ngebm
 python stream_predictor.py \
-    --input_rtsp ${RSTP_URL}/${CAMLABEL}  \
-    --output_rtsp ${RSTP_URL}/output__${MATCHID}__${TEAMID}__${CAMLABEL}__${MODELNAME}__${TIMESTAMP}  \
-    --weights_path ${MODELNAME}_model.pth \
-    --output_fname output/${MATCHID}__${TEAMID}__${CAMLABEL}__${MODELNAME}__${TIMESTAMP}.csv & 
+    --input_rtsp ${RSTP_URL}/${CAM_LABEL}  \
+    --output_rtsp ${RSTP_URL}/output__${MATCH_ID}__${TEAM_ID}__${CAM_LABEL}__${MODEL_NAME}__${TIMESTAMP}  \
+    --weights_path ${MODEL_NAME}_model.pth \
+    --output_fname output/${MATCH_ID}__${TEAM_ID}__${CAM_LABEL}__${MODEL_NAME}__${TIMESTAMP}.csv & 
 
 PID2=$!
 
-# Sleep for match duration of 7 minutes (420 seconds) + 14 seconds
-#sleep 420s
-sleep 74s
+# Sleep for match duration
+sleep ${MATCH_DURATION}
 
 # Kill the processes
 kill -9 $PID1 $PID2
