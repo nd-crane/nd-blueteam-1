@@ -13,9 +13,9 @@ from numpy.typing import NDArray
 
 FONT = cv2.FONT_HERSHEY_SIMPLEX
 
-def write_to_csv(frame_number, score, filename, score_threshold=0.0):    
+def write_to_csv(frame_number, score, filename, timestamp):    
     with open(filename, 'a') as csvfile:
-        line = f"{frame_number},{score:.3f}\n"
+        line = f"{frame_number},{score:.3f},{timestamp}\n"
         csvfile.write(line)        
 
 
@@ -85,7 +85,7 @@ def get_model_and_size(network, nClasses):
     return model, im_size
 
 
-def overlay_score(frame: int, image_np, score, frame_display_width, frame_display_height):
+def overlay_score(frame: int, image_np, score):
 
     # Resize the frame
     #image_np = cv2.resize(image_np, (frame_display_width, frame_display_height))
@@ -105,11 +105,6 @@ def overlay_score(frame: int, image_np, score, frame_display_width, frame_displa
     cv2.putText(image_np, text, (text_x, text_y), FONT, 1, color, 2, cv2.LINE_AA)
 
     return image_np
-
-    # Display the frame
-    # TODO: refactory frame name 
-    cv2.imwrite(f'ND BlueTeam 1 - Model 1 - {frame}.png', image_np)
-    #cv2.imshow('ND BlueTeam 1 - Model 1', image_np)
 
 class StreamInput(Thread):
     _stream: cv2.VideoCapture
@@ -199,10 +194,10 @@ class RTSPOutput(Thread):
 def main():
     # Parse command-line arguments
     parser = argparse.ArgumentParser(description='Read and display video from multiple RTSP streams using OpenCV')
-    parser.add_argument('--stream_label', default="Stream_0", help='Stream Label')
-    parser.add_argument('--stream_url', required=True, help='Stream RTSP URL')
+    parser.add_argument('--input_rtsp', required=True, help='Input Stream RTSP URL')
+    parser.add_argument('--output_rtsp', required=True, help='Output Stream RTSP URL')
     parser.add_argument("--weights_path", required=True, help="Path to the model weights file")
-    parser.add_argument('--output_folder', default='output', help='Main output folder to save results')
+    parser.add_argument('--output_fname', required=True, help='Name of the output file with predictions')
     parser.add_argument('--frame_save_width', type=int, default=960, help='Width to save frames (optional)')
     parser.add_argument('--frame_save_height', type=int, default=720, help='Height to save frames (optional)')
     parser.add_argument('--file_format', default='png', help='File format for saving frames (e.g., jpg, png)')
@@ -215,17 +210,9 @@ def main():
 
     args = parser.parse_args()
 
-    #stream_label = 'Stream_0'
-    #stream_url = 'rtsp://admin:Marialufy2@192.168.0.101:65534'
-    #stream_url = 'rtsp://192.168.0.103:554/H264Video'
-    #stream_url = '/home/pmoreira/tai-raite/raite-stream_recorder/video_1.mkv'
-
-    stream_folder = os.path.join(args.output_folder, args.stream_label)
-    if not os.path.exists(stream_folder):
-        os.makedirs(stream_folder)
-
-    # TODO: refactory this    
-    raite_output_path = os.path.join(stream_folder, 'ndblueteam_1-model_1.csv')   
+    # stream_folder = os.path.join(args.output_folder, args.stream_label)
+    # if not os.path.exists(stream_folder):
+    #     os.makedirs(stream_folder)
 
     # Load weights of model
     device = torch.device('cpu')
@@ -235,16 +222,15 @@ def main():
     model = model.to(device)
     model.eval()
 
-    #cv2.imshow('ND-BT-1 M1', np.zeros((frame_display_height, frame_display_width, 3), dtype=np.uint8))
     time.sleep(2)
     
     # Open the stream 
     cap_time = time.time()
 
-    input_rtsp = StreamInput(args.stream_url)
+    input_rtsp = StreamInput(args.input_rtsp)
     input_rtsp.start()
 
-    output_rtsp = RTSPOutput(input_rtsp.width(), input_rtsp.height(), 30, "rtsp://localhost:8554/blue-team-output")
+    output_rtsp = RTSPOutput(input_rtsp.width(), input_rtsp.height(), 30, args.output_rtsp)
     output_rtsp.start()
 
     print("cap time", time.time()-cap_time)
@@ -264,18 +250,18 @@ def main():
         frame_count += 1
         
         score = predict(model, frame, im_size)
-        #score = 0
 
         # Write predictions for RAITE ouput format 
-        # write_to_csv(frame_count, score, raite_output_path)        
+        write_to_csv(frame_count, score, args.output_fname, timestamp)
 
         # Display the frame with boxes
-        overlay_score(frame_count, frame, score, args.frame_display_width, args.frame_display_height)
+        overlay_score(frame_count, frame, score)
 
         output_rtsp.update(frame)
 
-        print("frame time", time.time()-frame_time, " timestamp", timestamp)
+        print("frame",frame_count , "frame time", time.time()-frame_time, " timestamp", timestamp)
 
+        
     input_rtsp.stop()
     input_rtsp.join()
     
