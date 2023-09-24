@@ -25,7 +25,7 @@
         name = "impurePythonEnv";
 
         # Setup Environment Variables
-        LD_LIBRARY_PATH = "/usr/lib/wsl/lib";
+        #LD_LIBRARY_PATH = "/usr/lib/wsl/lib";
         GST_PLUGIN_PATH_1_0 = "${gstPluginPaths}";
         PIP_DISABLE_PIP_VERSION_CHECK = 1;
         LANG = "en_US.UTF-8";

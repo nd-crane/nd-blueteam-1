@@ -9,7 +9,7 @@ INPUT_RSTP=${RSTP_URL}/${CAMLABEL}
 OUTPUT_RSTP=${RSTP_URL}/output__${MATCHID}__${TEAMID}__${CAMLABEL}__${MODELNAME}__${TIMESTAMP}
 OUTPUT_FNAME=${MATCHID}__${TEAMID}__${CAMLABEL}__${MODELNAME}__${TIMESTAMP}.csv
 
-python stream_predictor.py \
+python stream_predictor_cuda.py \
     --input_rtsp ${INPUT_RSTP}  \
     --output_rtsp ${OUTPUT_RSTP}  \
     --weights_path ${MODELNAME}_model.pth \
